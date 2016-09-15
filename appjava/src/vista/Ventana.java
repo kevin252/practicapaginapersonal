@@ -21,6 +21,7 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         re=new RepositorioMySql();
+        re.adicionarPersona(new Persona("kevin252", "dofus252", "Cardenas", "kevin"));
     }
 
     /**
@@ -33,37 +34,17 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTFUsuario = new javax.swing.JTextField();
-        jTFContraseña = new javax.swing.JTextField();
-        jTFNombre = new javax.swing.JTextField();
-        jTFApellido = new javax.swing.JTextField();
-        jBAgregar = new javax.swing.JButton();
-        jBContar = new javax.swing.JButton();
+        jBBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Usuario");
 
-        jLabel2.setText("Contraseña");
-
-        jLabel3.setText("Nombre");
-
-        jLabel4.setText("Apellido");
-
-        jBAgregar.setText("Agregar");
-        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+        jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAgregarActionPerformed(evt);
-            }
-        });
-
-        jBContar.setText("Contar");
-        jBContar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBContarActionPerformed(evt);
+                jBBuscarActionPerformed(evt);
             }
         });
 
@@ -72,26 +53,15 @@ public class Ventana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(jTFContraseña)
-                            .addComponent(jTFNombre)
-                            .addComponent(jTFApellido)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jBAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                        .addComponent(jBContar)))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel1)
+                .addGap(134, 134, 134)
+                .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBBuscar)
+                .addGap(251, 251, 251))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,53 +70,25 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTFApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAgregar)
-                    .addComponent(jBContar))
-                .addGap(88, 88, 88))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addComponent(jBBuscar)
+                .addGap(157, 157, 157))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         // TODO add your handling code here:
         
-        String usuario=jTFUsuario.getText();
-        String contraseña=jTFContraseña.getText();
-        String nombre=jTFNombre.getText();
-        String apellido=jTFApellido.getText();
-        
-        Persona p=new Persona(usuario, contraseña, apellido, nombre);
-        
-       re.adicionarPersona(p);
-       re.adicionarPersona(p);
-       re.adicionarPersona(p);
-       re.adicionarPersona(p);
-       
-       
-       
-                
-    }//GEN-LAST:event_jBAgregarActionPerformed
-
-    private void jBContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBContarActionPerformed
-        // TODO add your handling code here:
-        int per= re.obtenerCantidadPersonas();
-        JOptionPane.showMessageDialog(null, per);
-    }//GEN-LAST:event_jBContarActionPerformed
+        String usuario= jTFUsuario.getText();
+       Persona p= re.buscarPersonas(usuario);
+       if(p!=null){
+          JOptionPane.showMessageDialog(null, p.getNombre());  
+       }else{
+           JOptionPane.showMessageDialog(null, "no existe ese usuario");
+       }
+    }//GEN-LAST:event_jBBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,15 +126,8 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAgregar;
-    private javax.swing.JButton jBContar;
+    private javax.swing.JButton jBBuscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTFApellido;
-    private javax.swing.JTextField jTFContraseña;
-    private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFUsuario;
     // End of variables declaration//GEN-END:variables
 }

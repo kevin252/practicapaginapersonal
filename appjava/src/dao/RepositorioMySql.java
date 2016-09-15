@@ -13,10 +13,11 @@ import modelo.Persona;
  * @author kvin2
  */
 public class RepositorioMySql {
- private ArrayList<Persona> personas;
+
+    private ArrayList<Persona> personas;
 
     public RepositorioMySql() {
-        personas= new ArrayList<>();
+        personas = new ArrayList<>();
     }
 
     public ArrayList<Persona> getPersonas() {
@@ -26,15 +27,24 @@ public class RepositorioMySql {
     public void setPersonas(ArrayList<Persona> personas) {
         this.personas = personas;
     }
- 
-public int obtenerCantidadPersonas(){
-    return this.personas.size();
-}
 
-public boolean adicionarPersona(Persona p){
-    boolean estado= this.personas.add(p);
-    return estado;
-}
+    public int obtenerCantidadPersonas() {
+        return this.personas.size();
+    }
 
+    public boolean adicionarPersona(Persona p) {
+        boolean estado = this.personas.add(p);
+        return estado;
+    }
+
+    public Persona buscarPersonas(String usuario) {
+        for (Persona persona : personas) {
+            if (persona.getUsuario().equals(usuario)) {
+                return persona;
+            }
+        }
+        return null;
+
+    }
 
 }
